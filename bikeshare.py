@@ -22,7 +22,7 @@ def get_filters():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
-    # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
+    # Get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     while True:
         city =(input('\nWould you like to get data for Chicago, New York City, or Washington? \n')).lower()
         if (city in ['chicago', 'new york city', 'washington']):
@@ -68,28 +68,28 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
-    # load data file into a dataframe
+    # Load data file into a dataframe
     df = pd.read_csv(CITY_DATA[city])
 
-    # convert the Start Time column to datetime
+    # Convert the Start Time column to datetime
     df['Start Time'] = pd.to_datetime(df['Start Time'])
 
-    # extract month and day of week from Start Time to create new columns
+    # Extract month and day of week from Start Time to create new columns
     df['month'] = df['Start Time'].dt.month
     df['day_of_week'] = df['Start Time'].dt.weekday_name
 
-    # filter by month if applicable
+    # Filter by month if applicable
     if month != 'all':
-        # use the index of the months list to get the corresponding int
+        # Use the index of the months list to get the corresponding int
         months = ['january', 'february', 'march', 'april', 'may', 'june']
         month = months.index(month) + 1
 
-        # filter by month to create the new dataframe
+        # Filter by month to create the new dataframe
         df = df[df['month'] == month]
 
-    # filter by day of week if applicable
+    # Filter by day of week if applicable
     if day != 'all':
-        # filter by day of week to create the new dataframe
+        # Filter by day of week to create the new dataframe
         df = df[df['day_of_week'] == day.title()]
 
     return df
@@ -97,39 +97,39 @@ def load_data(city, month, day):
 
 def time_stats(df, month, day):
     """Displays statistics on the most frequent times of travel."""
-    # used info from https://stackoverflow.com/questions/1349332/python-passing-a-function-into-another-function
+    # Used info from https://stackoverflow.com/questions/1349332/python-passing-a-function-into-another-function
     # to get access from a variable of a function and access it in another function / pass it to another function
 
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
-    # check which filter is applicable and which statistics need to be presented
+    # Check which filter is applicable and which statistics need to be presented
     most_common_month = df['month'].value_counts().index[0]
     most_common_day = df['day_of_week'].mode()[0]
 
     if day != 'all' and month != 'all':
-        # display the filter-option chosen
+        # Display the filter-option chosen
         print('\nYou chose to filter by month', month.title(), 'and day', day.title(), ':\n')
     elif month == 'all' and day != 'all':
-        # display the filter-option chosen and the most common month
+        # Display the filter-option chosen and the most common month
         print('\nYou chose to get data for the day:', day.title(),' - for ALL of the first six month of 2017:\n')
         print('\nThe most common month of travel for your chosen day is: ', most_common_month)
         print('With a count of: ', df['month'].value_counts()[most_common_month])
     elif day == 'all' and month != 'all':
-        # display the filter-option chosen and the most common day of the week
+        # Display the filter-option chosen and the most common day of the week
         print('\nYou chose to filter by month =', month.title(), ' - and receive data for ALL days of the week:\n')
         print('\nThe most common weekday of travel: ', most_common_day )
-        print('With a count of: ', df['day_of_week'].value_counts()[most_common_day])
+        print('\nWith a count of: ', df['day_of_week'].value_counts()[most_common_day])
     else:
         print('\nThe most common month of travel in the first six month of 2017 is: ', most_common_month)
         print('With a count of: ', df['month'].value_counts()[most_common_month])
         print('\nThe most common weekday of travel in the first six month of 2017: ', most_common_day )
-        print('With a count of: ', df['day_of_week'].value_counts()[most_common_day])
+        print('\nWith a count of: ', df['day_of_week'].value_counts()[most_common_day])
 
     # extract hour from Start Time to create an hour column
     df['hour'] = df['Start Time'].dt.hour
 
-    # display the most common start hour for all filter-option
+    # Display the most common start hour for all filter-option
     most_common_hour = df['hour'].mode()[0]
     print('\nThe most common start hour for travel is: ',  most_common_hour)
     print('with a count of: ', df['hour'].value_counts()[most_common_hour], 'in your chosen timeframe')
@@ -145,19 +145,19 @@ def station_stats(df, city):
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
 
-    # display most commonly used start station
+    # Display most commonly used start station
     most_popular_start_station = df['Start Station'].mode()[0]
     print('\nThe most commonly used start station in {} is: {}'.format(city.title(), most_popular_start_station))
     print('with a count of: ',  df['Start Station'].value_counts()[most_popular_start_station])
 
 
-    # display most commonly used end station
+    # Display most commonly used end station
     most_popular_end_station = df['End Station'].mode()[0]
     print('\nThe most commonly used end station in {} is: {}'.format(city.title(), most_popular_end_station))
     print('with a count of: ',  df['End Station'].value_counts()[most_popular_end_station])
 
 
-    # display most frequent combination of start station and end station trip
+    # Display most frequent combination of start station and end station trip
     df['trip'] = df['Start Station'] + ' - ' + df['End Station']
     most_frequent_trip = df['trip'].value_counts().index[0]
     print('\nThe most frequent combination of start / end station in {} is {}.'.format(city.title(), most_frequent_trip))
@@ -172,7 +172,7 @@ def trip_duration_stats(df):
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
 
-    # calculating the total travel time and average travel time in seconds
+    # Calculating the total travel time and average travel time in seconds
     total_seconds = df['Trip Duration'].sum()
     mean_travel_time = df['Trip Duration'].mean()
 
@@ -198,7 +198,7 @@ def trip_duration_stats(df):
     print(readable_timedelta(total_seconds))
 
 
-    # display mean travel time
+    # Display mean travel time
     def traveltime_timedelta(mean_travel_time):
         """Displays the total travel time in a readable time format."""
         MINUTE = 60
@@ -249,7 +249,7 @@ def user_stats(df, city):
     print('-'*40)
 
 
-    #display how many rows are in the selected data set
+    # Display how many rows are in the selected data set
     rows = (len(df))
     print('\nThe raw data of your chosen timeframe has {} lines.\n'.format(rows))
     row_count = 5
