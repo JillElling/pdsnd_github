@@ -14,7 +14,7 @@ Three city dataset files are used as a basis for analysis:
 * washington.csv
 
 ### Credits
-These are the blogposts I consulted to scipt the program:
+These are the websites I consulted to scipt the program:
 * http://mathforum.org/dr.math/faq/faq.order.operations.html
 * https://wiki.python.org/moin/BitwiseOperators
 * https://www.programiz.com/python-programming/operators
