@@ -5,7 +5,9 @@ The procject was created on 20.03.2019 and the README file was created on 05.04.
 Explore US bikeshare data
 
 ### Description
-Describe what your project is about and what it does
+Program that imports data to explore data related to bike share systems for three major cities in the United States —Chicago, New York City, and Washington. Based on the user's requested city and time period, interesting questions will be answered about the usage with respect to popular times of travel,  popular stations and trips, trip duration, and user info.
+
+
 
 ### Files used
 Include the files used
