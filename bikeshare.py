@@ -113,12 +113,12 @@ def time_stats(df, month, day):
         # Display the filter-option chosen and the most common day of the week
         print('\nYou chose to filter by month =', month.title(), ' - and receive data for ALL days of the week:\n')
         print('\nThe most common weekday of travel: ', most_common_day )
-        print('With a count of: ', df['day_of_week'].value_counts()[most_common_day])
+        print('\nWith a count of: ', df['day_of_week'].value_counts()[most_common_day])
     else:
         print('\nThe most common month of travel in the first six month of 2017 is: ', most_common_month)
         print('With a count of: ', df['month'].value_counts()[most_common_month])
         print('\nThe most common weekday of travel in the first six month of 2017: ', most_common_day )
-        print('With a count of: ', df['day_of_week'].value_counts()[most_common_day])
+        print('\nWith a count of: ', df['day_of_week'].value_counts()[most_common_day])
 
     # extract hour from Start Time to create an hour column
     df['hour'] = df['Start Time'].dt.hour
