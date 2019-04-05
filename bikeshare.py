@@ -1,3 +1,9 @@
+"""
+Program to explore US bikeshare data from three major US cities:
+* Chicago
+* New York City
+* Washington
+"""
 import time
 import pandas as pd
 import numpy as np
@@ -25,7 +31,7 @@ def get_filters():
             print('\nPlease enter Chicago, New York City, or Washington!\n')
             continue
 
-    # TO DO: get user input for month (all, january, february, ... , june)
+    # Get user input for month (all, january, february, ... , june)
 
     while True:
         month = input('\nIf you want to receive data on a specific month (January - June) type the month otherwise type all:\n').lower()
@@ -35,7 +41,7 @@ def get_filters():
             print('\nPlease enter: all, january, february, march, april, may, or june!\n')
             continue
 
-    # get user input for day of week (all, monday, tuesday, ... sunday)
+    # Get user input for day of week (all, monday, tuesday, ... sunday)
     while True:
         day = input('\nOn which day of the week would you like to receive data:\n').lower()
         if (day in ['monday','tuesday','wednesday','thursday','friday','saturday','sunday', 'all']):
